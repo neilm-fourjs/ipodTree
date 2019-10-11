@@ -1,0 +1,193 @@
+
+ACTION DEFAULTS
+	ACTION open (TEXT="Open", IMAGE="open")
+	ACTION quit (TEXT="Quit", IMAGE="quit")
+	ACTION about (TEXT="About", IMAGE="help")
+	ACTION firstrow (TEXT="First", IMAGE="first" )
+	ACTION prevrow (TEXT="Prev", IMAGE="prev" )
+	ACTION nextrow (TEXT="Next", IMAGE="next" )
+	ACTION lastrow (TEXT="Last", IMAGE="last" )
+	ACTION update (TEXT="Update", IMAGE="pen" )
+	ACTION expandall (TEXT="Expand", IMAGE="fa-expand" )
+	ACTION collapseall (TEXT="Collapse", IMAGE="fa-caret-down" )
+END
+
+TOPMENU
+	GROUP file (TEXT="File")
+		COMMAND open
+		COMMAND quit
+	END -- GROUP
+	GROUP edit (TEXT="Edit")
+		COMMAND editcut
+		COMMAND editcopy
+		COMMAND editpaste
+	END -- GROUP
+	GROUP view (TEXT="View")
+		COMMAND expandall
+		COMMAND collapseall
+	END -- GROUP
+	GROUP help (TEXT="Help")
+		COMMAND help
+		COMMAND about
+	END -- GROUP
+END -- TOPMENU
+
+TOOLBAR
+	ITEM quit
+	ITEM open
+	ITEM expandall
+	ITEM collapseall
+	ITEM update
+	SEPARATOR
+	ITEM about
+END -- TOOLBAR
+
+LAYOUT ( STYLE="main qtcurve", IMAGE="fa-apple" )
+HBOX ( SPLITTER )
+TREE mytree ( PARENTIDCOLUMN=pid, IDCOLUMN=id, EXPANDEDCOLUMN=expanded, STYLE="tree" )
+{
+[f001              |f004]
+[f001              |f004]
+[f001              |f004]
+[f001              |f004]
+[f001              |f004]
+[f001              |f004]
+[f001              |f004]
+[f001              |f004]
+[f001              |f004]
+[f001              |f004]
+[f001              |f004]
+[f001              |f004]
+[f001              |f004]
+[f001              |f004]
+[f001              |f004]
+}
+END -- TREE
+
+VBOX (SPLITTER, STYLE="grad qtcurve")
+GRID
+{
+[l_r_s|r_srch                ][l_a_s|a_srch                ][l_t_s|t_srch                ]
+}
+END -- GRID
+TABLE tracks ( STYLE="list" )
+{
+[f006  |f007          |f008][f009          ][f010][f011]
+[f006  |f007          |f008][f009          ][f010][f011]
+[f006  |f007          |f008][f009          ][f010][f011]
+[f006  |f007          |f008][f009          ][f010][f011]
+[f006  |f007          |f008][f009          ][f010][f011]
+[f006  |f007          |f008][f009          ][f010][f011]
+[f006  |f007          |f008][f009          ][f010][f011]
+[f006  |f007          |f008][f009          ][f010][f011]
+[f006  |f007          |f008][f009          ][f010][f011]
+[f006  |f007          |f008][f009          ][f010][f011]
+}
+END -- TABLE
+HBOX ( SPLITTER, STYLE="grad qtcurve" )
+GRID
+{
+<G "Album Details"           >
+ [lab5|ai01                 ]
+ [lab6|ai02                 ]
+ [lab7|ai03                 ]
+ [lab8|ai04 ]
+<                            >
+<G "Musicbrainz"             >
+ [mb                        ]
+ [                          ]
+ [                          ]
+ [musicbrainz]
+}
+END -- GRID
+GRID
+{
+<G "Artwork"        >
+ [aimg             ]
+ [                 ]
+ [                 ]
+ [                 ]
+ [                 ]
+ [                 ]
+ [chk      :showbig]
+}
+END -- GRID
+GRID
+{
+<G "Stats"       >
+ [lab1|s001     ]
+ [lab2|s002     ]
+ [lab3|s003     ]
+ [lab4|s004     ]
+
+}
+END -- GRID
+END -- HBOX
+GRID
+{
+ [s005]
+}
+END -- GRID
+END -- VBOX
+
+END -- HBOX
+END -- LAYOUT
+
+ATTRIBUTES
+LABEL l_r_s : l_r_s, TEXT=%"Search Artist:";
+LABEL l_a_s : l_a_s, TEXT=%"Albums:";
+LABEL l_t_s : l_t_s, TEXT=%"Tracks:";
+BUTTONEDIT r_srch = FORMONLY.r_search, ACTION=r_search;
+BUTTONEDIT a_srch = FORMONLY.a_search, ACTION=a_search;
+BUTTONEDIT t_srch = FORMONLY.t_search, ACTION=t_search;
+
+LABEL lab1 : lab1, TEXT=%"Genres:";
+LABEL lab2 : lab2, TEXT=%"Artists:";
+LABEL lab3 : lab3, TEXT=%"Albums:";
+LABEL lab4 : lab4, TEXT=%"Tracks:";
+LABEL lab5 : lab5, TEXT=%"Genre:";
+LABEL lab6 : lab6, TEXT=%"Artist:";
+LABEL lab7 : lab7, TEXT=%"Album:";
+LABEL lab8 : lab8, TEXT=%"Tracks:";
+EDIT s001 = FORMONLY.genres,STYLE="info";
+EDIT s002 = FORMONLY.artists,STYLE="info";
+EDIT s003 = FORMONLY.albums,STYLE="info";
+EDIT s004 = FORMONLY.tracks,STYLE="info";
+EDIT ai01 = FORMONLY.genre, STYLE="info", SIZEPOLICY=DYNAMIC;
+EDIT ai02 = FORMONLY.artist, STYLE="info", SIZEPOLICY=DYNAMIC;
+EDIT ai03 = FORMONLY.album, STYLE="info", SIZEPOLICY=DYNAMIC;
+EDIT ai04 = FORMONLY.nooftracks, STYLE="info";
+LABEL s005 = FORMONLY.playtime,STYLE="info", SIZEPOLICY=DYNAMIC;
+TEXTEDIT mb = FORMONLY.m_mb, STRETCH=BOTH, SCROLLBARS=NONE, NOENTRY;
+BUTTON musicbrainz : musicbrainz,TEXT="Musicbrainz";
+
+IMAGE aimg = FORMONLY.album_art, HEIGHT=250 PIXELS, WIDTH=250 PIXELS, AUTOSCALE, SIZEPOLICY=DYNAMIC, STYLE="noborder";
+CHECKBOX chk = FORMONLY.m_getAlbumArt, TEXT="Fetch Album Art", VALUECHECKED=1, VALUEUNCHECKED=0, NOT NULL;
+BUTTON showbig : showbig,TEXT="Show Album Cover";
+
+
+-- Tree
+EDIT f001 = FORMONLY.name, TITLE="Name", IMAGECOLUMN=image;
+EDIT f004 = FORMONLY.year, TITLE="Year";
+PHANTOM FORMONLY.pid;
+PHANTOM FORMONLY.id;
+PHANTOM FORMONLY.image;
+PHANTOM FORMONLY.expanded;
+PHANTOM FORMONLY.artist_name;
+
+-- Tracks
+PHANTOM FORMONLY.genre_key;
+PHANTOM FORMONLY.artist_key;
+PHANTOM FORMONLY.album_key;
+f006 = FORMONLY.trackno ,SCROLL, SIZEPOLICY=DYNAMIC, TITLE=%"No.";
+f007 = FORMONLY.title ,SCROLL, SIZEPOLICY=DYNAMIC, IMAGECOLUMN=img, TITLE=%"Song Title";
+f008 = FORMONLY.dur  ,SCROLL, SIZEPOLICY=DYNAMIC,TITLE=%"Duration";
+f009 = FORMONLY.file  ,SCROLL, SIZEPOLICY=DYNAMIC, TITLE=%"File";
+f010 = FORMONLY.play_count ,SCROLL, SIZEPOLICY=DYNAMIC, TITLE=%"Played";
+IMAGE f011 = FORMONLY.rating, TITLE=%"Rating";
+PHANTOM FORMONLY.img;
+
+END
+INSTRUCTIONS
+SCREEN RECORD tree ( FORMONLY.name THRU FORMONLY.artist_name )
+SCREEN RECORD tracks ( FORMONLY.genre_key THRU img )
