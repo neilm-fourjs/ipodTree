@@ -113,7 +113,7 @@ MAIN
 
 	CALL ui.Interface.setText(C_PRGDESC)
 
-	OPEN FORM win FROM "ipod"
+	OPEN FORM win FROM "ipodtree"
 	DISPLAY FORM win
 	CALL ui.window.getCurrent().setText("Loading, please wait ...")
 	CALL ui.interface.refresh()

@@ -70,8 +70,8 @@
     </Library>
     <ExtProject filePath="../g2_lib/g2_lib.4pw" id="-574655404"/>
     <Application binaryName="ipodTree" dependencies="14000,1986,-574655404_14000,648476088" id="18736" label="ipodTree">
-      <File filePath="src/ipod.4gl"/>
-      <File filePath="src/ipod.per"/>
+      <File filePath="src/ipodtree.4gl"/>
+      <File filePath="src/ipodtree.per"/>
       <File filePath="src/ipod_big_cover.per"/>
       <File filePath="src/ipod_sax.4gl"/>
     </Application>
