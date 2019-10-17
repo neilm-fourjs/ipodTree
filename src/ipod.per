@@ -42,7 +42,7 @@ TOOLBAR
 	ITEM about
 END -- TOOLBAR
 
-LAYOUT ( STYLE="main qtcurve", IMAGE="fa-apple" )
+LAYOUT ( STYLE="main", IMAGE="fa-apple" )
 HBOX ( SPLITTER )
 TREE mytree ( PARENTIDCOLUMN=pid, IDCOLUMN=id, EXPANDEDCOLUMN=expanded, STYLE="tree" )
 {
@@ -64,7 +64,7 @@ TREE mytree ( PARENTIDCOLUMN=pid, IDCOLUMN=id, EXPANDEDCOLUMN=expanded, STYLE="t
 }
 END -- TREE
 
-VBOX (SPLITTER, STYLE="grad qtcurve")
+VBOX (SPLITTER, STYLE="grad")
 GRID
 {
 [l_r_s|r_srch                ][l_a_s|a_srch                ][l_t_s|t_srch                ]
@@ -84,7 +84,7 @@ TABLE tracks ( STYLE="list" )
 [f006  |f007          |f008][f009          ][f010][f011]
 }
 END -- TABLE
-HBOX ( SPLITTER, STYLE="grad qtcurve" )
+HBOX ( SPLITTER, STYLE="grad" )
 GRID
 {
 <G "Album Details"           >
