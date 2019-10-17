@@ -2,6 +2,7 @@
 LAYOUT ( TEXT="Cover Art", STYLE="naked" )
 GRID
 {
+[close:openbrowser]
 [img                              ]
 [                                 ]
 [                                 ]
@@ -12,11 +13,10 @@ GRID
 [                                 ]
 [                                 ]
 [                                 ]
-
-[close]
 }
 END -- GRID
 
 ATTRIBUTES
-IMAGE img = FORMONLY.l_img, AUTOSCALE;
-BUTTON close : close, TEXT="Close";
+IMAGE img = FORMONLY.l_img, AUTOSCALE, HEIGHT=600 PIXELS, WIDTH=600 PIXELS;
+BUTTON close : close, IMAGE="fa-chevron-circle-left", TEXT="Close";
+BUTTON openbrowser : openbrowser,IMAGE="fa-globe", TEXT="Open in Browser";

@@ -1436,9 +1436,12 @@ FUNCTION db_read()
 END FUNCTION
 --------------------------------------------------------------------------------
 FUNCTION show_big_cover(l_img STRING)
+	DEFINE l_ret SMALLINT
 	OPEN WINDOW big_cover WITH FORM "ipod_big_cover"
 	DISPLAY BY NAME l_img
 	MENU
+		ON ACTION openbrowser
+			CALL ui.Interface.frontCall("standard","launchURL", l_img, l_ret)
 		ON ACTION close
 			EXIT MENU
 	END MENU
