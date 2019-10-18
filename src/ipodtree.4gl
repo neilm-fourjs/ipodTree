@@ -978,8 +978,8 @@ FUNCTION getArtworkURL(l_album_id STRING)
 	DEFINE c base.channel
 
 	LET l_url = 'http://coverartarchive.org/release/' || l_album_id.trim()
-	CALL g2_lib.g2_message("Getting Album artwork from:" || NVL(l_url, "NULL"))
-
+	CALL g2_lib.g2_message(SFMT("Getting Album artwork for '%1' from: %2", l_album_id.trim(), l_url))
+	DISPLAY SFMT("Getting Album artwork for '%1' from: %2", l_album_id.trim(), l_url)
 	-- redirection that happens causes a bug in gws library
 	-- failing back to wget
 	IF os.path.pathSeparator() = ":" THEN -- Linux / Mac
@@ -1441,7 +1441,7 @@ FUNCTION show_big_cover(l_img STRING)
 	DISPLAY BY NAME l_img
 	MENU
 		ON ACTION openbrowser
-			CALL ui.Interface.frontCall("standard","launchURL", l_img, l_ret)
+			CALL ui.Interface.frontCall("standard", "launchURL", l_img, l_ret)
 		ON ACTION close
 			EXIT MENU
 	END MENU
